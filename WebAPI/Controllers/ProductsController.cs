@@ -34,6 +34,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
         [HttpGet("getbyid")]
 
         public IActionResult Get(int id)
@@ -59,7 +60,29 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-     
+        [HttpDelete("delete")]
 
+        public IActionResult Delete(Product product)
+        {
+            var result = _productService.Delete(product);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        //GetAllByCategoryId
+        [HttpGet("getbycategoryid")]
+
+        public IActionResult Get2(int id)
+        {
+
+            var result = _productService.GetAllByCategoryId(id);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
     }
 }

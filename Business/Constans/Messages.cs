@@ -14,5 +14,9 @@ namespace Business.Constans
        
         internal static string ProductsListed="Ürünler listelendi";
         internal static string MaintenanceTime="Sistem bakımda";
+
+        public static string ProductDeleted = "Ürün Silindi";
+
+        public static string CategoryLimitExceded { get; internal set; }
     }
 }
