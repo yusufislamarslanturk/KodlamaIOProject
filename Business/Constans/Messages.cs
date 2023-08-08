@@ -32,5 +32,6 @@ namespace Business.Constans
         public static string UserAdded { get; internal set; }
         public static string UserDeleted { get; internal set; }
         public static string UserUpdated { get; internal set; }
+        public static string ProductCountOfCategoryError = "Bir kategoride en fazla 10 ürün olabilir";
     }
 }

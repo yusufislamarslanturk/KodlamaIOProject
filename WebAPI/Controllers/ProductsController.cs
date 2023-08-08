@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -22,28 +23,53 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet("getall")]
+        
 
-        public IActionResult Get()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
+            //Swagger
+            //Dependency chain --
            
             var result = _productService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data); 
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
+
         }
 
         [HttpGet("getbyid")]
 
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
 
             var result = _productService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("getbycategory")]
+
+        public IActionResult GetByCategory(int categoryId)
+        {
+
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                //var result2 = new List<Product>();
+                //result2.Add(result.Data);
+                //var resultNew = new
+                //{
+                //    Data = result2,
+                //    Message = result.Message,
+                //    Success = result.Success
+                //};
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -80,7 +106,7 @@ namespace WebAPI.Controllers
             var result = _productService.GetAllByCategoryId(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
